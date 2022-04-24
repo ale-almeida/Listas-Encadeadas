@@ -1,16 +1,42 @@
 
 public class ListaSimplismente <T>{
-	
-	private No <T> inicio;
-	
+	//Lista simplesmente encadeada (adicionar, remover e listar)
+	private No primeiro;
+	private No ultimo;
+	private int tamanho;
+
 	public void adiciona(T elemento) {
 		No<T> celula = new No <T> (elemento);
-		this.inicio = celula;
-	}
+		celula.setValor(elemento);
+		if(primeiro == null && ultimo == null) {
+			primeiro  = celula;
+			ultimo = celula;
+			tamanho ++;
+		}else {
+			ultimo.setProximo(celula);
+			ultimo = celula;
+			tamanho ++;
+		}
 
-	@Override
-	public String toString() {
-		return "ListaSimplismente [inicio=" + inicio + "]";
+	}
+	public void removerInicio() {
+		if(primeiro == null && ultimo == null) {
+			primeiro = ultimo =null;	
+		}else {
+			primeiro = primeiro.getProximo();
+			tamanho --;
+		}		
 	}
 	
+	@Override
+	public String toString() {
+		String imprime = "Tamanho da lista: [" + tamanho + "] " + "\n";
+		No valor = primeiro;
+		while (valor !=null) {
+			imprime += valor.getValor() + " ";
+			valor = valor.getProximo();
+		}
+		return imprime;
+	}
+
 }
