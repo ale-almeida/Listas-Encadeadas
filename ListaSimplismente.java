@@ -27,6 +27,15 @@ public class ListaSimplismente <T>{
 			tamanho --;
 		}		
 	}
+	public String Listar() {
+		String listar;
+		No valor = primeiro;
+		while (valor !=null) {
+			listar += valor.getValor() + " ";
+			valor = valor.getProximo();
+		}
+		return listar;
+	}
 	
 	@Override
 	public String toString() {
